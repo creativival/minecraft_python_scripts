@@ -4,7 +4,7 @@
 import mcpi.minecraft as minecraft
 import mcpi.block as block
 
-RANGE = 100
+RANGE = 10
 
 mc = minecraft.Minecraft()
 mc.postToChat("All clear")

@@ -1,26 +1,22 @@
 """
-範囲内のブロックをすべて変更
+正方形
 """
 import mcpi.minecraft as minecraft
 import mcpi.block as block
 
-RANGE = 100
-BLOCK_ID_TO_CHANGE = 20
+HALF_LENGTH = 4
+BLOCK_ID = 1
 
 mc = minecraft.Minecraft()
-mc.postToChat("Change all blocks")
+mc.postToChat("Set square")
 x, y, z = map(int, mc.player.getPos())
 print(f'player position: {x}:{y}:{z}')
 
-block_ids = mc.getBlocks(x-RANGE,y,z-RANGE,x+RANGE,y+RANGE,z+RANGE)
+x0, y0, z0 = x - HALF_LENGTH, y, z - HALF_LENGTH
 # print(block_ids)
-for i in range(RANGE + 1):
-    for j in range(RANGE * 2 + 1):
-        for k in range(RANGE * 2 + 1):
-            x1 = x - RANGE + j
-            y1 = y + i
-            z1 = z - RANGE + k
-            block_id = block_ids[k + (j * (RANGE * 2 + 1)) + (i * (RANGE * 2 + 1)**2)]
-            # print(f'position: {x1}:{y1}:{z1}:{block_id}')
-            if block_id != 0:
-                mc.setBlock(x1, y1, z1, BLOCK_ID_TO_CHANGE)
+for i in range(HALF_LENGTH * 2):
+    for j in range(HALF_LENGTH * 2):
+        x1 = x0 + i
+        y1 = y0 + 7
+        z1 = z0 + j
+        mc.setBlock(x1, y1, z1, BLOCK_ID)
